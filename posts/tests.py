@@ -20,3 +20,12 @@ class HomePageViewTest(TestCase):
     def test_view_url_exists_at_proper_location(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
+
+    def test_view_url_by_name(self):
+        resp = self.client.get(reverse('home'))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_view_url_uses_right_template(self):
+        resp = self.client.get(reverse('home'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'home.html')
